@@ -35,24 +35,19 @@ def gridDados(df_Arquivos_Intraday, df_Arquivos_Diarios):
 
 def processamento_Parametros():
     with st.form("form_calculo"):
-        # Entrada para valor percentual
-        percentual = st.number_input("Informe o valor do percentual (%))", min_value=-100.0, step=0.1)        
-        
-        valor_moeda = st.number_input("Informe o valor do investimento (R$)", min_value=0.0, step=0.01)        
         
         calcular = st.form_submit_button("Calcular")
         
         if calcular:
-            stg.processar_ODS_Estrategia001_Main(percentual, valor_moeda)
-            st.success(f'Processado com sucesso! com os parametros: {percentual} e {valor_moeda}')    
+            stg.processar_ODS_Estrategia002_Main()
+            st.success(f'Processado com sucesso!')    
 
 def gridDados(df_dados_diarios_consolidado)    :
     
     st.header('Resultado do Processamento', divider='rainbow')                
     #****************************************************************************
     # Filtros Grid
-    #****************************************************************************
-    
+    #****************************************************************************    
     aplicar_positivo100d = st.checkbox("Positivo nos últimos 100 dias", value=True)
     aplicar_positivo50d = st.checkbox("Positivo nos últimos 50 dias", value=True)
     aplicar_positivo20d = st.checkbox("Positivo nos últimos 20 dias", value=True)
@@ -81,22 +76,7 @@ def gridDados(df_dados_diarios_consolidado)    :
 
     st.dataframe(data=df_dados_diarios_consolidado.style.format(thousands=".", precision=2), hide_index=True)    
 
-    # if codneg_selecionado:         
-    #     st.header('Detalhe', divider='rainbow')                
-        
-    #     arquivos_Diario = [(os.path.join(stg.path_Data_ODS_Acoes_Diario, f)) 
-    #                 for f in os.listdir(stg.path_Data_ODS_Acoes_Diario) if (os.path.isfile(os.path.join(stg.path_Data_ODS_Acoes_Diario, f)))]
-    #     arquivos_Diario.sort()    
-        
-    #     for arquivo in arquivos_Diario:
             
-    #         if arquivo in codneg_selecionado:
-    #             df_dados = aux.read_Dataframe_csv(arquivo)        
-    #             df_dados = df_dados.tail(1)
-                
-    #             st.header('', divider='rainbow')                        
-
-    #             st.dataframe(data=df_dados.tail(20), hide_index=True)            
 
 def createPage():
     
@@ -107,7 +87,7 @@ def createPage():
     #****************************************************************************
     # Leitura de dados
     #****************************************************************************
-    df_dados_diarios_consolidado = aux.read_Dataframe_csv(stg.path_Data_DM_Acoes_Estrategia001_Diario_Consolidado)
+    df_dados_diarios_consolidado = aux.read_Dataframe_csv(stg.path_Data_DM_Acoes_Estrategia002_Diario_Consolidado)
 
     gridDados(df_dados_diarios_consolidado)
 

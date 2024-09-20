@@ -2,7 +2,7 @@ import streamlit as st  # pip install streamlit
 import time
 import locale
 from streamlit_option_menu import option_menu
-from views import home, dados, estrategia001
+from views import home, dados, estrategia001, estrategia002
    
 def pageConfig():
     # Set the locale to the user's default locale for proper thousand separators
@@ -24,7 +24,7 @@ def pageConfig():
 def buildSidebar():
     ### MENU PRINCIPAL
     with st.sidebar:
-        selected = option_menu(menu_title="DayTrade", options=['Home', 'Dados', 'Estratégia 001'], icons=['house', 'gear'], menu_icon='menu-down', orientation='vertical')
+        selected = option_menu(menu_title="DayTrade", options=['Home', 'Dados', 'Estratégia 001', 'Estratégia 002'], icons=['house', 'gear'], menu_icon='menu-down', orientation='vertical')
 
     if selected=='Home':
         home.createPage()        
@@ -32,6 +32,9 @@ def buildSidebar():
         dados.createPage()
     elif selected=="Estratégia 001":
         estrategia001.createPage()
+    elif selected=="Estratégia 002":
+        estrategia002.createPage()
+
     #elif selected=="Benchmark":
     #    benchmark.createPage()
     #elif selected=="Contas":

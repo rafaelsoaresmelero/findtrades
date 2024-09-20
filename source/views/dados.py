@@ -39,7 +39,6 @@ def gridDados(df_Arquivos_Intraday, df_Arquivos_Diarios):
     else:
         df_Arquivos_Intraday = df_Arquivos_Intraday[df_Arquivos_Intraday['CODNEG'].isin(codneg_selecionado)]   
         df_Arquivos_Diarios = df_Arquivos_Diarios[df_Arquivos_Diarios['CODNEG'].isin(codneg_selecionado)]   
-       
     
     col1, col2 = st.columns(2)    
     
@@ -68,9 +67,6 @@ def createPage():
     list_Arquivos_Diarios = [(f.replace('.SA.csv', ''), datetime.fromtimestamp(os.path.getmtime(os.path.join(stg.path_Data_STG_Acoes_Diario, f)))) 
                 for f in os.listdir(stg.path_Data_STG_Acoes_Diario) if os.path.isfile(os.path.join(stg.path_Data_STG_Acoes_Diario, f))]
 
-    list_Arquivos_Intraday
-    list_Arquivos_Diarios
-
     df_Arquivos_Intraday = pd.DataFrame(list_Arquivos_Intraday, columns=['CODNEG', 'Last Modified'])
     df_Arquivos_Intraday.sort_values(by='CODNEG',inplace=True)
     df_Arquivos_Diarios = pd.DataFrame(list_Arquivos_Diarios, columns=['CODNEG', 'Last Modified'])    
@@ -78,4 +74,5 @@ def createPage():
     
     createMenu()
 
-    gridDados(df_Arquivos_Intraday, df_Arquivos_Diarios)
+    gridDados(df_Arquivos_Intraday, df_Arquivos_Diarios)    
+    
